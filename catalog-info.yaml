@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: TAP
+spec:
+  owner: is3dev
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tap-frontend
+  description: Monitor d'Acces Frontend
+  tags:
+    - javascript
+    - react
+  annotations:
+    is3-devportal/version-local: "http://localhost:8888/local/version"
+    is3-devportal/version-conso: "http://localhost:8888/conso/version"
+    is3-devportal/version-int: "http://localhost:8888/pre/version"
+    is3-devportal/version-pre: "http://localhost:8888/int/version"
+    is3-devportal/version-pro: "http://localhost:8888/pro/version"
+spec:
+  type: service
+  lifecycle: production
+  owner: is3dev
+  system: TAP
+  consumesApis:
+    - tap-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: is3dev
+spec:
+  type: team
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: tap-api
+  description: Backend API of TAP
+spec:
+  type: openapi
+  lifecycle: production
+  owner: is3dev
+  definition:  # Points to actual spec, e.g., OpenAPI file
+    $text: https://github.com/freelance-ik-me/tap-backend/edit/main/petstore.yaml
