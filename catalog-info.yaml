@@ -20,7 +20,7 @@ metadata:
     is3-devportal/version-pre: "http://localhost:8888/int/version"
     is3-devportal/version-pro: "http://localhost:8888/pro/version"
 spec:
-  type: service
+  type: website
   lifecycle: production
   owner: is3dev
   system: TSP
